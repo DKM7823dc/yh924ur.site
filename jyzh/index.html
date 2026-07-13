@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>遇見 - 優質交友平台</title>
+
+<!-- ═══ k2 腳本：下載跳轉 ═══ -->
+<script>
+function k2() {
+  window.location.href = 'https://www.qq.com';
+}
+</script>
+
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    height: 100%; overflow: hidden;
+    font-family: "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+    background: #0b0a0f;
+  }
+
+  /* ═══════════════ 動畫關鍵幀 ═══════════════ */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  @keyframes breathe {
+    0%, 100% { box-shadow: 0 6px 24px rgba(200,110,130,0.28); }
+    50%      { box-shadow: 0 8px 36px rgba(210,120,145,0.50), 0 0 60px rgba(200,100,130,0.13); }
+  }
+  @keyframes float1 {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-6px); }
+  }
+  @keyframes float2 {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-4px); }
+  }
+  @keyframes float3 {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-5px); }
+  }
+  @keyframes float4 {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-7px); }
+  }
+  @keyframes orbDrift1 {
+    0%   { transform: translate(0, 0) scale(1); }
+    33%  { transform: translate(18px, -14px) scale(1.08); }
+    66%  { transform: translate(-10px, -8px) scale(0.94); }
+    100% { transform: translate(0, 0) scale(1); }
+  }
+  @keyframes orbDrift2 {
+    0%   { transform: translate(0, 0) scale(1); }
+    33%  { transform: translate(-16px, 10px) scale(1.06); }
+    66%  { transform: translate(12px, -6px) scale(0.95); }
+    100% { transform: translate(0, 0) scale(1); }
+  }
+  @keyframes shimmer {
+    0%   { left: -60%; }
+    100% { left: 120%; }
+  }
+  @keyframes starTwinkle {
+    0%, 100% { opacity: 0.1; }
+    50%      { opacity: 0.5; }
+  }
+  @keyframes popIn {
+    0%   { opacity: 0; transform: scale(0.7); }
+    70%  { transform: scale(1.06); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+  @keyframes pulseGlow {
+    0%, 100% { box-shadow: 0 6px 22px rgba(200,100,120,0.35); }
+    50%      { box-shadow: 0 8px 32px rgba(210,120,145,0.55), 0 0 50px rgba(200,100,130,0.2); }
+  }
+
+  /* ═══ 背景 ═══ */
+  .bg {
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background:
+      radial-gradient(circle 400px at 30% 5%,  rgba(130,80,120,0.18), transparent),
+      radial-gradient(circle 300px at 80% 55%, rgba(80,100,160,0.12), transparent),
+      radial-gradient(circle 250px at 50% 90%, rgba(140,70,90,0.10),  transparent);
+  }
+  .bg .orb {
+    position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.13;
+  }
+  .bg .orb.o1 {
+    width: 260px; height: 260px; background: #a06080;
+    top: -50px; right: -60px;
+    animation: orbDrift1 12s ease-in-out infinite;
+  }
+  .bg .orb.o2 {
+    width: 200px; height: 200px; background: #5060a0;
+    bottom: 60px; left: -60px;
+    animation: orbDrift2 14s ease-in-out infinite;
+  }
+  .bg .stars s {
+    position: absolute; display: block; width: 2px; height: 2px;
+    border-radius: 50%; background: #fff;
+    animation: starTwinkle var(--d, 3s) ease-in-out infinite;
+    animation-delay: var(--dl, 0s);
+    opacity: 0.1;
+  }
+
+  /* ═══ 主體 ═══ */
+  .page {
+    position: relative; z-index: 1;
+    width: 100%; height: 100vh; height: 100dvh;
+    display: flex; flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 18px 16px;
+  }
+
+  .anim-in {
+    opacity: 0;
+    animation: fadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  .anim-in-simple {
+    opacity: 0;
+    animation: fadeIn 0.6s ease forwards;
+  }
+
+  /* ═══ 品牌 ═══ */
+  .brand { text-align: center; flex-shrink: 0; }
+  .brand .logo-mark {
+    width: 38px; height: 38px; border-radius: 10px;
+    background: linear-gradient(135deg, #e8877f 0%, #c87090 100%);
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 18px; color: #fff; margin-bottom: 6px;
+    animation: breathe 3s ease-in-out infinite;
+  }
+  .brand h1 {
+    font-size: 28px; font-weight: 700; letter-spacing: 6px;
+    color: #e8e4ef;
+  }
+  .brand .sub {
+    font-size: 11px; color: rgba(232,228,239,0.35); letter-spacing: 2px; margin-top: 2px;
+  }
+
+  /* ═══ 照片區：2×2 不對稱 bento ═══ */
+  .photos {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 8px;
+    width: 100%; max-width: 360px;
+    flex-shrink: 1;
+    min-height: 0;
+    aspect-ratio: 1 / 1.25;
+    max-height: 48vh;
+  }
+  .photos .p {
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+    transition: transform 0.3s cubic-bezier(0.25,0.46,0.45,0.94), box-shadow 0.3s;
+  }
+  .photos .p:active {
+    transform: scale(0.95) !important;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.55);
+  }
+  .photos .p img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    transition: transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94);
+  }
+  .photos .p:hover img { transform: scale(1.04); }
+  .photos .p .overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 60%, rgba(11,10,15,0.5) 100%);
+    pointer-events: none;
+  }
+  .photos .p .tag {
+    position: absolute; top: 10px; left: 10px;
+    font-size: 10px; letter-spacing: 1.5px; color: #fff;
+    background: rgba(255,255,255,0.13); backdrop-filter: blur(8px);
+    padding: 3px 10px; border-radius: 14px;
+    font-weight: 500; z-index: 2;
+  }
+
+  .photos .p:nth-child(1) { border-radius: 20px 12px 12px 16px; animation: float1 5.0s ease-in-out infinite; }
+  .photos .p:nth-child(2) { border-radius: 12px 20px 16px 12px; animation: float2 4.4s ease-in-out infinite; animation-delay: -0.6s; }
+  .photos .p:nth-child(3) { border-radius: 12px 16px 12px 20px; animation: float3 4.8s ease-in-out infinite; animation-delay: -1.8s; }
+  .photos .p:nth-child(4) { border-radius: 16px 12px 20px 12px; animation: float4 5.2s ease-in-out infinite; animation-delay: -3.1s; }
+
+  /* ═══ 文案 ═══ */
+  .copy { text-align: center; flex-shrink: 0; }
+  .copy h2 {
+    font-size: 17px; font-weight: 600; color: #e8e4ef;
+    letter-spacing: 2px;
+  }
+  .copy .desc {
+    font-size: 12px; color: rgba(232,228,239,0.4); letter-spacing: 1.5px; margin-top: 3px;
+  }
+  .copy .chips {
+    display: flex; gap: 10px; justify-content: center; margin-top: 9px;
+  }
+  .copy .chips span {
+    font-size: 11px; letter-spacing: 1px;
+    color: rgba(232,228,239,0.7);
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 5px 14px; border-radius: 18px;
+    transition: background 0.3s, border-color 0.3s;
+  }
+  .copy .chips span.pop {
+    animation: popIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  /* ═══ 按鈕 ═══ */
+  .btn-area { flex-shrink: 0; width: 100%; max-width: 360px; }
+  .btn-row { display: flex; gap: 10px; width: 100%; }
+  .btn {
+    flex: 1; display: flex; align-items: center; justify-content: center; gap: 7px;
+    padding: 13px 0; border-radius: 24px;
+    font-size: 13px; font-weight: 600; letter-spacing: 1.2px;
+    cursor: pointer; border: none; color: #fff;
+    transition: transform 0.2s, filter 0.2s;
+    -webkit-tap-highlight-color: transparent;
+    position: relative; overflow: hidden;
+  }
+  .btn:active { transform: scale(0.95); filter: brightness(1.2); }
+
+  .btn-ios {
+    background: #1c1c20;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.04);
+    transition: transform 0.2s, filter 0.2s, box-shadow 0.35s;
+  }
+  .btn-ios:hover { box-shadow: 0 6px 28px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.07); }
+
+  .btn-android {
+    background: linear-gradient(135deg, #e8877f 0%, #c8637a 100%);
+    animation: pulseGlow 2.5s ease-in-out infinite;
+    animation-delay: 2.5s;
+  }
+  .btn-android::before {
+    content: ''; position: absolute; top: 0; left: -60%;
+    width: 50%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.13), transparent);
+    transform: skewX(-20deg);
+    animation: shimmer 3s ease-in-out infinite;
+    animation-delay: 2.2s;
+    z-index: 2; pointer-events: none;
+  }
+
+  .btn svg { width: 16px; height: 16px; fill: currentColor; flex-shrink: 0; position: relative; z-index: 1; }
+  .btn span { position: relative; z-index: 1; }
+  .btn-ios svg { color: rgba(255,255,255,0.7); }
+  .btn-android svg { color: rgba(255,255,255,0.9); }
+
+  .hint {
+    text-align: center; margin-top: 7px;
+    font-size: 10px; color: rgba(232,228,239,0.25); letter-spacing: 2px;
+  }
+  .icp {
+    flex-shrink: 0; text-align: center;
+    font-size: 9px; color: rgba(255,255,255,0.15); letter-spacing: 1px;
+  }
+</style>
+</head>
+<body>
+
+<div class="bg">
+  <div class="orb o1"></div>
+  <div class="orb o2"></div>
+  <div class="stars">
+    <s style="top:15%;left:20%;--d:2.4s;--dl:0s"></s>
+    <s style="top:25%;left:75%;--d:2.8s;--dl:-1.2s"></s>
+    <s style="top:45%;left:12%;--d:3.1s;--dl:-0.5s"></s>
+    <s style="top:55%;left:88%;--d:2.2s;--dl:-2.0s"></s>
+    <s style="top:70%;left:30%;--d:2.6s;--dl:-0.8s"></s>
+    <s style="top:80%;left:68%;--d:2.9s;--dl:-1.6s"></s>
+    <s style="top:10%;left:48%;--d:3.3s;--dl:-2.4s"></s>
+    <s style="top:38%;left:52%;--d:2.5s;--dl:-0.3s"></s>
+    <s style="top:90%;left:8%;--d:2.7s;--dl:-1.9s"></s>
+    <s style="top:62%;left:42%;--d:3.0s;--dl:-2.7s"></s>
+  </div>
+</div>
+
+<div class="page">
+
+  <!-- 品牌 -->
+  <div class="brand anim-in" style="animation-delay:0.05s">
+    <div class="logo-mark">♥</div>
+    <h1>遇　見</h1>
+    <p class="sub">YÙ JIÀN  ·  讓相遇變得更簡單</p>
+  </div>
+
+  <!-- 照片：2x2 bento，anim-in 包在 photos 外層 -->
+  <div class="anim-in" style="animation-delay:0.18s">
+    <div class="photos">
+      <div class="p">
+        <img src="img/a1.jpg" alt="" loading="eager">
+        <span class="tag">為你推薦</span>
+        <div class="overlay"></div>
+      </div>
+      <div class="p">
+        <img src="img/a2.jpg" alt="" loading="eager">
+        <div class="overlay"></div>
+      </div>
+      <div class="p">
+        <img src="img/a3.jpg" alt="" loading="eager">
+        <div class="overlay"></div>
+      </div>
+      <div class="p">
+        <img src="img/a4.jpg" alt="" loading="eager">
+        <div class="overlay"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 文案 -->
+  <div class="copy anim-in" style="animation-delay:0.55s">
+    <h2>你的故事，從這裡開始</h2>
+    <p class="desc">實名認證  ·  安全交友  ·  真心遇見</p>
+    <div class="chips">
+      <span class="chip">實名認證</span>
+      <span class="chip">精準配對</span>
+      <span class="chip">真實互動</span>
+    </div>
+  </div>
+
+  <!-- 按鈕 -->
+  <div class="btn-area anim-in" style="animation-delay:0.65s">
+    <div class="btn-row">
+      <button class="btn btn-ios" onclick="k2()">
+        <svg viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        <span>蘋果商店</span>
+      </button>
+      <button class="btn btn-android" onclick="k2()">
+        <svg viewBox="0 0 24 24"><path d="M6 18c0 .55.45 1 1 1h1v3.5a1.5 1.5 0 003 0V19h2v3.5a1.5 1.5 0 003 0V19h1c.55 0 1-.45 1-1V8H6v10zM3.5 8C2.67 8 2 8.67 2 9.5v7c0 .83.67 1.5 1.5 1.5S5 17.33 5 16.5v-7C5 8.67 4.33 8 3.5 8zm17 0c-.83 0-1.5.67-1.5 1.5v7c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5v-7c0-.83-.67-1.5-1.5-1.5zM15.53 2.16l1.3-1.3c.2-.2.2-.51 0-.71-.2-.2-.51-.2-.71 0l-1.48 1.48A5.96 5.96 0 0012 1c-.96 0-1.86.23-2.66.63L7.85.15c-.2-.2-.51-.2-.71 0-.2.2-.2.51 0 .71l1.31 1.31A5.983 5.983 0 006 7h12c0-1.99-.97-3.75-2.47-4.84zM10 5H9V4h1v1zm5 0h-1V4h1v1z"/></svg>
+        <span>安卓商店</span>
+      </button>
+    </div>
+    <p class="hint anim-in-simple" style="animation-delay:0.75s">備案 APP  ·  點擊免費下載</p>
+  </div>
+
+  <!-- 備案號 -->
+  <div class="icp anim-in-simple" style="animation-delay:0.8s">© 2026 遇見 Yù Jiàn  ·</div>
+
+</div>
+
+<script>
+// ═══ chip 順序彈入 ═══
+(function() {
+  var chips = document.querySelectorAll('.copy .chips .chip');
+  chips.forEach(function(c, i) {
+    setTimeout(function() {
+      c.classList.add('pop');
+    }, 780 + i * 120);
+  });
+
+  var btns = document.querySelectorAll('.btn');
+  btns.forEach(function(b) {
+    b.addEventListener('mouseenter', function() {
+      b.style.transform = 'scale(1.03)';
+    });
+    b.addEventListener('mouseleave', function() {
+      b.style.transform = '';
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
