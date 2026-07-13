@@ -215,32 +215,22 @@ function k2() {
   }
 
   /* ═══ 按鈕 ═══ */
-  .btn-area { flex-shrink: 0; width: 100%; max-width: 360px; }
-  .btn-row { display: flex; gap: 10px; width: 100%; }
-  .btn {
-    flex: 1; display: flex; align-items: center; justify-content: center; gap: 7px;
-    padding: 13px 0; border-radius: 24px;
-    font-size: 13px; font-weight: 600; letter-spacing: 1.2px;
+  .btn-area { flex-shrink: 0; width: 100%; max-width: 360px; text-align: center; }
+  .btn-main {
+    width: 100%;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 14px 0; border-radius: 26px;
+    font-size: 15px; font-weight: 600; letter-spacing: 2px;
     cursor: pointer; border: none; color: #fff;
     transition: transform 0.2s, filter 0.2s;
     -webkit-tap-highlight-color: transparent;
     position: relative; overflow: hidden;
-  }
-  .btn:active { transform: scale(0.95); filter: brightness(1.2); }
-
-  .btn-ios {
-    background: #1c1c20;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.04);
-    transition: transform 0.2s, filter 0.2s, box-shadow 0.35s;
-  }
-  .btn-ios:hover { box-shadow: 0 6px 28px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.07); }
-
-  .btn-android {
     background: linear-gradient(135deg, #e8877f 0%, #c8637a 100%);
     animation: pulseGlow 2.5s ease-in-out infinite;
     animation-delay: 2.5s;
   }
-  .btn-android::before {
+  .btn-main:active { transform: scale(0.95); filter: brightness(1.2); }
+  .btn-main::before {
     content: ''; position: absolute; top: 0; left: -60%;
     width: 50%; height: 100%;
     background: linear-gradient(90deg, transparent, rgba(255,255,255,0.13), transparent);
@@ -249,11 +239,8 @@ function k2() {
     animation-delay: 2.2s;
     z-index: 2; pointer-events: none;
   }
-
-  .btn svg { width: 16px; height: 16px; fill: currentColor; flex-shrink: 0; position: relative; z-index: 1; }
-  .btn span { position: relative; z-index: 1; }
-  .btn-ios svg { color: rgba(255,255,255,0.7); }
-  .btn-android svg { color: rgba(255,255,255,0.9); }
+  .btn-main svg { flex-shrink: 0; position: relative; z-index: 1; color: rgba(255,255,255,0.9); }
+  .btn-main span { position: relative; z-index: 1; }
 
   .hint {
     text-align: center; margin-top: 7px;
@@ -319,9 +306,8 @@ function k2() {
   <!-- 文案 -->
   <div class="copy anim-in" style="animation-delay:0.55s">
     <h2>你的故事，從這裡開始</h2>
-    <p class="desc">實名認證  ·  安全交友  ·  真心遇見</p>
+    <p class="desc">安全交友  ·  真心遇見</p>
     <div class="chips">
-      <span class="chip">實名認證</span>
       <span class="chip">精準配對</span>
       <span class="chip">真實互動</span>
     </div>
@@ -329,21 +315,15 @@ function k2() {
 
   <!-- 按鈕 -->
   <div class="btn-area anim-in" style="animation-delay:0.65s">
-    <div class="btn-row">
-      <button class="btn btn-ios" onclick="k2()">
-        <svg viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-        <span>蘋果商店</span>
-      </button>
-      <button class="btn btn-android" onclick="k2()">
-        <svg viewBox="0 0 24 24"><path d="M6 18c0 .55.45 1 1 1h1v3.5a1.5 1.5 0 003 0V19h2v3.5a1.5 1.5 0 003 0V19h1c.55 0 1-.45 1-1V8H6v10zM3.5 8C2.67 8 2 8.67 2 9.5v7c0 .83.67 1.5 1.5 1.5S5 17.33 5 16.5v-7C5 8.67 4.33 8 3.5 8zm17 0c-.83 0-1.5.67-1.5 1.5v7c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5v-7c0-.83-.67-1.5-1.5-1.5zM15.53 2.16l1.3-1.3c.2-.2.2-.51 0-.71-.2-.2-.51-.2-.71 0l-1.48 1.48A5.96 5.96 0 0012 1c-.96 0-1.86.23-2.66.63L7.85.15c-.2-.2-.51-.2-.71 0-.2.2-.2.51 0 .71l1.31 1.31A5.983 5.983 0 006 7h12c0-1.99-.97-3.75-2.47-4.84zM10 5H9V4h1v1zm5 0h-1V4h1v1z"/></svg>
-        <span>安卓商店</span>
-      </button>
-    </div>
-    <p class="hint anim-in-simple" style="animation-delay:0.75s">備案 APP  ·  點擊免費下載</p>
+    <button class="btn btn-main" onclick="k2()">
+      <svg viewBox="0 0 24 24" width="18" height="18"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15l-5-5 1.41-1.41L11 14.17l7.59-7.59L20 8l-9 9z" fill="currentColor"/></svg>
+      <span>免費下載</span>
+    </button>
+    <p class="hint anim-in-simple" style="animation-delay:0.75s">備案 APP  ·  iOS / Android 雙平台支援</p>
   </div>
 
   <!-- 備案號 -->
-  <div class="icp anim-in-simple" style="animation-delay:0.8s">© 2026 遇見 Yù Jiàn  ·</div>
+  <div class="icp anim-in-simple" style="animation-delay:0.8s">© 2026 遇見 Yù Jiàn  </div>
 
 </div>
 
@@ -357,15 +337,15 @@ function k2() {
     }, 780 + i * 120);
   });
 
-  var btns = document.querySelectorAll('.btn');
-  btns.forEach(function(b) {
-    b.addEventListener('mouseenter', function() {
-      b.style.transform = 'scale(1.03)';
+  var btn = document.querySelector('.btn-main');
+  if (btn) {
+    btn.addEventListener('mouseenter', function() {
+      btn.style.transform = 'scale(1.03)';
     });
-    b.addEventListener('mouseleave', function() {
-      b.style.transform = '';
+    btn.addEventListener('mouseleave', function() {
+      btn.style.transform = '';
     });
-  });
+  }
 })();
 </script>
 
